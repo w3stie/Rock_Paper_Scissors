@@ -46,14 +46,14 @@
           (playerSelection === "scissors" && computerSelection === "paper")){
             return ("You Win!");
           }
-          
-    }
+        }
+        
+    function playGame(){
 
-    function playGame() {
       let playerScore = 0;
       let computerScore = 0;
 
-      for (let round =1; round <= 5; round++){
+      for (let round = 1; round <=5; round++){
 
         const playerSelection = prompt("Enter your choice: Rock, Paper, or Scissors");
         const computerSelection = getComputerChoice();
@@ -67,21 +67,20 @@
 
         if (result.includes("You Win!")){
           playerScore++;
-        } else if (result.includes("Computer Wins!")){
+        } else if (result.includes("Computer Wins!")){}
           computerScore++;
+        }
+
+        if (playerScore > computerScore){
+          console.log("You Win the Game");
+        } else if( computerScore > playerScore){
+          console.log("Cmputer Wins the Game!")
+        } else {
+          console.log("It's a Tie! No Overall Winner.")
         }
       }
 
-      if (playerScore > computerScore) {
-        console.log("You win the game!");
-      } else if (playerScore < computerScore) {
-        console.log("Computer wins the game!");
-      } else {
-        console.log("It's a tie! No overall winner.");
-      }
-    }
-
-    playGame();
+      playGame();
 
   </script>
 </body>
