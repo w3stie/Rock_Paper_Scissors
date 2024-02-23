@@ -3,63 +3,55 @@ let computerScore = 0;
 let roundWinner = '';
 
 const playerSelection = document.querySelectorAll('button');
-    const score = document.getElementById('score');
-
-    playerSelection.forEach(button => {
-        button.addEventListener ('click', () => {
-          const playerSelection  = button.id;
-  
-          const computerSelection = getComputerChoice();
-          const result = playRound (playerSelection, computerSelection);
-          updateScore()
-          updateScoreInfoAndMessage(result, playerSelection, computerSelection);
-          updateChoices(playerSelection, computerSelection)
-  
-          const content = document.createElement('p');
-          content.innerHTML = `Player chose ${playerSelection}. <br><br> Computer chose ${computerSelection}. <br><br> ${result}`;
-
-          score.innerHTML = '';
-          score.appendChild(content);
-        });
-       });
-
-
+    
+    
 //assigns each button a respective choice ie; rock, paper, scissors
-        
+playerSelection.forEach(button => {
+    button.addEventListener ('click', () => {
+      const playerSelection  = button.id;
 
+      const computerSelection = getComputerChoice();
+      const result = playRound (playerSelection, computerSelection);
+      updateScore()
+      updateScoreInfoAndMessage(result, playerSelection, computerSelection);
+      updateChoices(playerSelection, computerSelection)
+    });
+   });
+
+
+//function for the computer to generate a random choice between rock, paper and scissors
 function getComputerChoice(){
           const entities = ["rock", "paper", "scissors"];
           const randomIndex = Math.floor(Math.random() * entities.length);
           return entities[randomIndex];
         };
-        
-        function playRound (playerSelection, computerSelection){
-        if (playerSelection === computerSelection){
-            roundWinner = 'tie'
-              return ("It's a tie!");
-            } else if((playerSelection === "rock" && computerSelection === "scissors")||
-            (playerSelection === "paper" && computerSelection === "rock")||
-            (playerSelection === "scissors" && computerSelection === "paper")){
-                playerScore ++
-                roundWinner = 'player'
-                if (playerScore === 5){
-                    return `You Won The Game!`
-                }
-                return `You Win ${playerSelection} beats ${computerSelection} <br>
-                Player Score:  ${playerScore} <br> Computer Score: ${computerScore}`
-            } else {((playerSelection === "rock" && computerSelection === "paper")||
-             (playerSelection === "paper" && computerSelection === "scissors")||
-             (playerSelection === "scissors" && computerSelection === "rock"))
-                 computerScore ++
-                 roundWinner = 'computer'
-                 if (computerScore === 5){
-                     return `Computer Won The Game!`
-                 };
-                };
-                 return `You Lost! ${computerSelection} beats ${playerSelection} <br>
-                 Player Score: ${playerScore} <br> Computer Score: ${computerScore}`
-             };
 
+//function to execute one successful round
+function playRound (playerSelection, computerSelection){
+    if (playerSelection === computerSelection){
+        roundWinner = 'tie'
+          return ("It's a tie!");
+        }
+        
+    if((playerSelection === "rock" && computerSelection === "scissors")||
+        (playerSelection === "paper" && computerSelection === "rock")||
+        (playerSelection === "scissors" && computerSelection === "paper")){
+            playerScore ++
+            roundWinner = 'player';
+
+            if (playerScore === 5){
+                return `You Won The Game!`}
+            };
+
+    computerScore ++
+    roundWinner = 'computer';
+
+    updateScore();
+    checkWInner();
+
+    if (computerScore === 5){
+        return `Computer Won The Game!`}
+    };     
         
 //UI
 
@@ -92,6 +84,7 @@ function updateScoreInfoAndMessage(result, playerSelection, computerSelection) {
     }
 }
 
+//function to alter the signs to the corresponding selected option
 function updateChoices(playerSelection, computerSelection){
     switch (playerSelection){
         case 'rock':
@@ -115,5 +108,26 @@ function updateChoices(playerSelection, computerSelection){
         computerSign.textContent = '✂️' 
         break  
     }
+};
 
-}
+function checkWInner(){
+    if (playerScore === 5){
+        alert ('You Won The Game!')
+        resetGame();
+    } else if (computerScore === 5){
+        alert ('Computer Won The Game!')
+        resetGame();
+    }
+};
+
+function resetGame (){
+    //reset scores
+    playerScore = 0;
+    computerScore = 0;
+
+  // Update the displayed scores
+  updateScore();
+  // Clear previous choices
+  playerSign.textContent = '❔';
+  computerSign.textContent = '❔';
+};

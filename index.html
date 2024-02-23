@@ -3,32 +3,60 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Function scope example</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <title>Rock Paper Scissors</title>
   </head>
 <body>
+  <header>
+    <h2 class="page_title">ROCK PAPER SCISSORS</h2>
+  </header>
 
-  <div class="score_board">
-    <h2>WELCOME!</h2>
-    <h3 class="score-info" id="scoreInfo">Choose Your Weapom</h3>
-    <h3 class="score-message" id="scoreMessage">First to 5 points wins the Game</h3>
-    <div class="score_container">
-      <div class="score_box">
-        <div class="sign" id="playerSign">❔</div>
-        <p class="score" id="playerScore">Player Score: 0</p>
-      </div>
-      <div class="score_box">
-        <div class="sign" id="computerSign">❔</div>
-        <p class="score" id="computerScore">Computer Score: 0</p>
-      </div>
+  <main>
+    <div class="score_board">
+      <h3 class="score-info" id="scoreInfo">Choose Your Weapom</h3>
+      <h3 class="score-message" id="scoreMessage">First to 5 points wins the Game</h3>
 
+      <div class="score_container">
+        <div class="score_box">
+          <div class="sign" id="playerSign">❔</div>
+          <p class="score" id="playerScore"> 0</p>
+        </div>
+
+        <div class="score_box">
+          <div class="sign" id="computerSign">❔</div>
+          <p class="score" id="computerScore">Computer Score: 0</p>
+        </div>
+
+      </div>
+      <div class="buttons">
+        <button class="btn-square" id="rock">
+          <div class="sign">🪨</div>
+        </button>
+        <button class="btn-square" id="paper">
+          <div class="sign">📝</div>
+        </button>
+        <button class="btn-square" id="scissors">
+          <div class="sign">✂️</div>
+        </button>
+      </div>
     </div>
-  </div>
 
-  <button id="rock">Rock</button>
-  <button id="paper">Paper</button>
-  <button id="scissors">Scissors</button>
-  <div id="score"></div>
-  <script src="script.js"></script>
+  </main>
+  <footer class="footer">
+    <p>
+      Copyright ©
+      <script>
+        document.write(new Date().getFullYear())
+      </script>
+      w3stie
+    </p>
+  </footer>
+
+    <script src="script.js"></script>
 
 </body>
 </html>
